@@ -1,0 +1,47 @@
+﻿Create table restaurante(
+        localizacao VARCHAR(500) not NULL,
+          turnos VARCHAR(300) NOT NULL,
+          categoria VARCHAR(500) not NULL,
+          nome VARCHAR (999) NOT NULL,
+          cnpj_pk int not NULL,
+          cardapio VARCHAR(999) not NULL,
+          PRIMARY key (cnpj_pk)
+);
+Create table musicos(
+        integrantes INT not NULL,
+          nome VARCHAR(300) NOT NULL,
+          cache_ VARCHAR(500) not NULL,
+          instrumentos VARCHAR (200) NOT NULL,
+          estilo_musical VARCHAR(200) not NULL,
+          id_banda_pk INT not NULL UNIQUE,
+          turnos VARCHAR(300) not NULL,
+          PRIMARY key (id_banda_pk)
+);
+create TABLE aplicativo_disp(
+        id_app_pk int not NULL,
+          programador VARCHAR(500) not NULL,
+        interface_cor VARCHAR(40) not NULL,
+          funcoes VARCHAR(400) not NULL,
+          id_banda_fk int not NULL,
+        cnpj_fk int not NULL,
+          verificacao_rest_mus VARCHAR(100) not NULL,
+  PRIMARY key (Id_app_pk),
+  FOREIGN KEY (id_banda_fk) REFERENCES musicos(id_banda_pk),
+  FOREIGN key (cnpj_fk) REFERENCES restaurante(cnpj_pk)
+);
+CREATE TABLE publico(
+        demanda VARCHAR(200) not NULL,
+          id_banda_fk int not NULL,
+          pedido VARCHAR(500),
+          telefone_pk int not NULL,
+  PRIMARY key (telefone_pk),
+  FOREIGN key (id_banda_fk) REFERENCES musicos(id_banda_pk)
+);
+INSERT into musicos (integrantes, nome, cache_, instrumentos, estilo_musical, id_banda_pk, turnos)
+VALUES ('4', 'Raul Seixas', 'R$10,000', 'Violão e Guitarra', 'Rock', '11', 'Noite');
+INSERT INTO restaurante (localizacao, turnos, categoria, nome, cnpj_pk, cardapio)
+values ('Célio Veiga 21', 'Noite', 'Bar', 'Bar do César', '01610684006', 'Cerveja');
+INSERT INTO publico (demanda, id_banda_fk, pedido, telefone_pk)
+VALUES ('alta', '11', 'cerveja', '991536612');
+insert into aplicativo_disp(id_app_pk, programador, interface_cor,funcoes,id_banda_fk,cnpj_fk,verificacao_rest_mus)
+values ('12', 'Fernando', '#18191E', 'horario e bandas disponíveis', '11', '01610684006', 'Raul Seixas Disponivel para Bar do César')
