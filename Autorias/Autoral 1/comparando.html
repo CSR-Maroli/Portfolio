@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        body {
+          background: linear-gradient(to bottom, #0077FF, #0055CC);
+        }
+
+        img {
+            width: 40%;
+            height: 50%;
+        }
+
+        .geral {
+
+            text-align: center;
+        }
+
+        .radios {
+            text-align: justify;
+            margin-left: 42%;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="geral">
+        <h1>Comparando seu consumo de energia!</h1>
+        
+        <img src="https://s2.glbimg.com/gMEy6XkBc_-OLPfX46rW8qLDDrg=/0x0:1032x477/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2021/1/d/wAxpBnR3uBIjtoNiFNhw/whatsapp-image-2021-04-27-at-18.58.39-1-.jpeg" alt="Conta de Energia"></img><br><br>
+            <h4>Insira o seu consumo de energia</h4>
+            <input id="kwh" type="number" placeholder="Consumo de KWh"><br>
+            <div class="radios">
+                <input id="carvao" name="tipo" type="radio">KG de Carvão</input><br>
+                <input id="co2" name="tipo" type="radio">KG de Co2</input><br>
+            </div>
+            <button onclick="comparar()" type="button" class="btn btn-outline-primary btn-lg" style="width: 300px;">Comparar</button><br>
+            <h4 id="result">Resultado</h4>
+    </div>
+    <script>
+ function comparar() {
+  var comparar = Number(document.getElementById("kwh").value);
+  var r = 0;
+  if (document.getElementById("carvao").checked) {
+    r = comparar * 0.38;
+  } else if (document.getElementById("co2").checked) {
+    r = comparar * 0.0817;
+  }
+  document.getElementById("result").innerHTML = r + "kg";
+}
+</script>
+<h1 class="centralizado">Esse site foi criado para quantificar a poluição de nosso planeta, por isso opte por usar energia limpa!</h1>
+
+<style>
+    .centralizado {
+        text-align: center;
+    }
+</style>
+</body>
+</html>
+
